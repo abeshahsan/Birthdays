@@ -13,7 +13,10 @@ A Flutter application to manage and track birthdays.
 
 ### Prerequisites
 
--   [Flutter](https://flutter.dev/docs/get-started/install) installed on your machine.
+Ensure you have the following installed:  
+- [Flutter SDK](https://docs.flutter.dev/get-started/install)  
+- [Dart SDK](https://dart.dev/get-dart)  
+- An IDE such as [Android Studio](https://developer.android.com/studio) or [Visual Studio Code](https://code.visualstudio.com/)  
 
 ### Installation
 
