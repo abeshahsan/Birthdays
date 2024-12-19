@@ -1,16 +1,55 @@
-# birthdays
+# Birthdays
 
-A new Flutter project.
+A Flutter application to manage and track birthdays.
+
+## Features
+
+-   Add, update, and delete birthday entries.
+-   Search for birthdays.
+-   Select and delete multiple entries.
+-   Light and dark themes.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+-   [Flutter](https://flutter.dev/docs/get-started/install) installed on your machine.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/birthdays.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd birthdays
+    ```
+3. Install dependencies:
+    ```sh
+    flutter pub get
+    ```
+
+### Running the App
+
+1. Connect a device or start an emulator.
+2. Run the app:
+    ```sh
+    flutter run
+    ```
+
+## Project Structure
+
+-   `lib/`: Contains the Dart code for the application.
+-   `assets/`: Contains the image assets.
+-   `android/`: Contains the Android-specific code.
+-   `ios/`: Contains the iOS-specific code.
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
