@@ -39,7 +39,7 @@ class DatabaseHelper {
 
   Future<List<Map<String, dynamic>>> getAllItems() async {
     final db = await database;
-    return await db.query('birthdays', orderBy: 'name, month, day');
+    return await db.query('birthdays');
   }
 
   Future<int> addItem(String name, int day, int month) async {

@@ -40,12 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
           setState(() {
             textEditingController.clear();
             filterItems();
+            FocusScope.of(context).requestFocus(FocusNode());
           });
         }
       },
       child: GestureDetector(
         onTap: () {
-          FocusScope.of(context).unfocus();
+          FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Scaffold(
           appBar: MyAppBar(title: widget.title),
@@ -84,14 +85,17 @@ class _MyHomePageState extends State<MyHomePage> {
           isDense: true,
           hintText: "Search",
           prefixIcon: Icon(Icons.search),
-          suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {
-                  textEditingController.clear();
-                  filterItems();
-                });
-              },
-              icon: Icon(Icons.clear)),
+          suffixIcon: textEditingController.text.isEmpty
+              ? null
+              : IconButton(
+                  onPressed: () {
+                    setState(() {
+                      textEditingController.clear();
+                      filterItems();
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    });
+                  },
+                  icon: Icon(Icons.clear)),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -148,7 +152,24 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _loadItems() async {
     final data = await _dbHelper.getAllItems();
     setState(() {
-      showItems = data;
+      showItems = data.toList();
+      //sort them the closest day from today should be the first
+      showItems.sort((a, b) {
+        final today = DateTime.now();
+
+        DateTime aDate = DateTime(DateTime.now().year, a['month'], a['day']);
+        if (aDate.isBefore(today)) {
+          aDate = aDate.add(Duration(days: 365));
+        }
+
+        DateTime bDate = DateTime(DateTime.now().year, b['month'], b['day']);
+        if (bDate.isBefore(today)) {
+          bDate = bDate.add(Duration(days: 365));
+        }
+
+        return aDate.isBefore(bDate) ? -1 : 1;
+      });
+
       allItems = showItems.toList();
       selectedItemsIndex.clear();
     });
@@ -169,7 +190,9 @@ class _MyHomePageState extends State<MyHomePage> {
               localSelectedDay,
               localSelectedMonth,
               index != null ? showItems[index]['id'] : null);
-        });
+        }).then((_) {
+      FocusScope.of(context).requestFocus(FocusNode());
+    });
   }
 
   Widget getBdayListViewBuilder() {
