@@ -226,6 +226,7 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
           child: ListTile(
+            selected: selectedItemsIndex.contains(index),
             title: Text(item['name']),
             subtitle: Text(
               "${months[item['month'] - 1]} ${item['day']}",

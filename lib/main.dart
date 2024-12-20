@@ -15,7 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Birthdays',
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
-      home: const MyHomePage(title: 'Birthdays'),
+      home: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: const MyHomePage(title: 'Birthdays'),
+      ),
     );
   }
 }
